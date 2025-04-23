@@ -33,18 +33,15 @@ function getPreparedGoods<T>(
 
   if (sortField) {
     preparedGoods.sort((good1, good2) => {
-      const value1 = good1;
-      const value2 = good2;
-      // const value1 = good1[sortField];
-      // const value2 = good2[sortField];
+      const value1 = good1[sortField] as keyof T;
+      const value2 = good2[sortField] as keyof T;
 
       if (typeof value1 === 'number' && typeof value2 === 'number') {
         return value1 - value2;
       }
 
       if (typeof value1 === 'string' && typeof value2 === 'string') {
-        return value1.length - value2.length;
-        // return value1.localeCompare(value2);
+        return value1.localeCompare(value2);
       }
 
       return 0;
